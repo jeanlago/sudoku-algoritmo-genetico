@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sudoku com Algoritmo Genético</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topo">
+  <h1>Sudoku com Algoritmo Genético</h1>
+  <p class="ref">Mantere &amp; Koljonen, <em>Solving, Rating and Generating Sudoku Puzzles with GA</em>, IEEE CEC 2007</p>
+</header>
+
+<main class="palco">
+
+  <!-- ------------------------------------------------ coluna esquerda -->
+  <section class="coluna coluna-grade">
+    <div id="grade" class="grade" aria-label="Melhor indivíduo da população"></div>
+
+    <div class="legenda">
+      <span><b class="amostra pista">5</b> pista fixa</span>
+      <span><b class="amostra conflito">5</b> conflito em linha/coluna</span>
+      <span><b class="amostra ok">5</b> preenchido pelo AG</span>
+    </div>
+
+    <div id="faixa-status" class="faixa-status">Escolha um puzzle e clique em Iniciar.</div>
+  </section>
+
+  <!-- ------------------------------------------------- coluna direita -->
+  <section class="coluna coluna-painel">
+
+    <div class="cartao painel-numeros">
+      <div class="numero"><span class="rotulo">Geração</span><span id="v-geracao" class="valor">0</span></div>
+      <div class="numero"><span class="rotulo">Avaliações</span><span id="v-avaliacoes" class="valor">0</span></div>
+      <div class="numero"><span class="rotulo">Melhor aptidão</span><span id="v-aptidao" class="valor destaque">–</span></div>
+      <div class="numero"><span class="rotulo">Reinícios</span><span id="v-reinicios" class="valor">0</span></div>
+      <div class="numero"><span class="rotulo">Tempo</span><span id="v-tempo" class="valor">0,0 s</span></div>
+    </div>
+
+    <div class="cartao">
+      <h2>Melhor aptidão por geração</h2>
+      <canvas id="grafico" width="640" height="200"></canvas>
+      <p class="nota-grafico"><span class="marca-reinicio"></span> linha vermelha = reinício da população</p>
+    </div>
+
+    <div class="cartao">
+      <h2>Controles</h2>
+
+      <div class="linha">
+        <label for="sel-puzzle">Puzzle</label>
+        <select id="sel-puzzle"></select>
+      </div>
+
+      <div class="linha" id="linha-custom" hidden>
+        <label for="txt-custom">81 caracteres</label>
+        <input id="txt-custom" type="text" spellcheck="false"
+               placeholder="use 0 ou . para célula vazia">
+      </div>
+
+      <div class="linha">
+        <label for="txt-semente">Semente</label>
+        <input id="txt-semente" type="text" value="1" spellcheck="false">
+        <button id="btn-semente-aleatoria" class="mini" type="button">sortear</button>
+      </div>
+
+      <div class="linha">
+        <label for="sel-velocidade">Velocidade</label>
+        <select id="sel-velocidade">
+          <option value="1">1 geração por quadro</option>
+          <option value="5">5 gerações por quadro</option>
+          <option value="25" selected>25 gerações por quadro</option>
+          <option value="100">100 gerações por quadro</option>
+          <option value="500">500 gerações por quadro</option>
+          <option value="2000">2000 gerações por quadro</option>
+        </select>
+      </div>
+
+      <div class="linha">
+        <label for="sel-trials">Parada</label>
+        <select id="sel-trials">
+          <option value="0" selected>sem limite de avaliações</option>
+          <option value="100000">100.000 avaliações (como no artigo)</option>
+        </select>
+      </div>
+
+      <div class="botoes">
+        <button id="btn-iniciar" class="primario" type="button">Iniciar</button>
+        <button id="btn-passo" type="button">+1 geração</button>
+        <button id="btn-reiniciar" type="button">Reiniciar</button>
+      </div>
+    </div>
+
+    <div class="cartao">
+      <h2>Operadores <small>(desligue um a um para comparar)</small></h2>
+      <div class="chaves">
+        <label><input type="checkbox" id="fl-crossover" checked> Cruzamento</label>
+        <label><input type="checkbox" id="fl-slack" checked> Regra de folga</label>
+        <label><input type="checkbox" id="fl-aging" checked> Envelhecimento</label>
+        <label><input type="checkbox" id="fl-restart" checked> Reinício (2000 ger.)</label>
+      </div>
+      <p class="nota">Com os quatro ligados, o comportamento é o do artigo.</p>
+    </div>
+
+    <div class="cartao">
+      <h2>Método exato (backtracking)</h2>
+      <div class="linha">
+        <button id="btn-exato" type="button">Resolver com backtracking</button>
+        <span id="v-exato" class="valor-exato">–</span>
+      </div>
+      <p class="nota" id="nota-unicidade"></p>
+    </div>
+
+    <div class="cartao" id="cartao-passo">
+      <h2>Passo a passo <small>(use o botão “+1 geração”)</small></h2>
+      <div id="passo-conteudo" class="passo-vazio">
+        Avance uma geração para ver os pais sorteados, a herança de blocos e as trocas da mutação.
+      </div>
+    </div>
+
+  </section>
+</main>
+
+<script src="ga-core.js"></script>
+<script src="sudoku-solver.js"></script>
+<script src="puzzles.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

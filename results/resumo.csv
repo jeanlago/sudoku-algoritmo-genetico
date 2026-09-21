@@ -1,0 +1,8 @@
+preset;nivel_declarado;nivel_medido;pistas;execucoes;taxa_resolvido;ger_media;ger_mediana;ger_desvio;ger_min;ger_max;aval_media;reinicios_media;tempo_ms_media;backtracking_ms;backtracking_nos
+vazia;vazia;vazia;0;30;1,00;502,00;451,00;292,72;97;1227;10061,00;0,00;9,79;0,41;81
+facil-1;facil;facil;44;30;1,00;1255,77;643,00;1394,94;54;4936;25142,63;0,30;17,94;0,07;37
+facil-2;facil;facil;46;30;1,00;1137,50;580,00;994,94;84;3502;22777,30;0,30;16,15;0,02;35
+medio-1;medio;medio;40;30;0,97;6016,33;4930,50;5687,13;66;30000;120401,57;2,57;86,22;0,02;41
+medio-2;medio;medio;40;30;0,97;6887,00;4794,00;6983,48;600;30000;137824,70;3,03;99,75;0,04;41
+dificil-1;dificil;dificil;30;30;0,57;19846,50;24977,50;10628,01;1745;30000;397152,60;9,60;296,81;0,02;51
+dificil-2;dificil;dificil;38;30;0,90;11013,70;6934,50;9567,03;243;30000;220402,10;5,10;158,00;0,17;43

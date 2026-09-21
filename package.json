@@ -1,0 +1,12 @@
+{
+  "name": "sudoku-algoritmo-genetico",
+  "version": "1.0.0",
+  "description": "Site estatico que roda ao vivo o algoritmo genetico para Sudoku de Mantere & Koljonen (IEEE CEC 2007)",
+  "private": true,
+  "scripts": {
+    "test": "node tests/run-tests.js",
+    "benchmark": "node tests/benchmark.js 30 30000",
+    "gerar-puzzles": "node tools/gen-puzzles.js 6 8"
+  },
+  "license": "MIT"
+}
