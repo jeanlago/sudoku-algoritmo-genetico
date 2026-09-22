@@ -322,12 +322,21 @@ aparecer.
 
 ## A interface
 
-* Grade 9×9 grande, com subgrades de borda grossa. Cada tipo de célula tem cor
-  própria, para não depender de "ausência de cor" num projetor:
-  **cinza e negrito** = pista do puzzle (nunca muda), **azul** = célula
-  preenchida pelo AG, **vermelho** = célula numa linha ou coluna com repetição,
-  **verde** = resolvido (as pistas ficam num verde mais forte, então dá para ver
-  o que era pista mesmo na grade resolvida).
+* Grade 9×9 grande, com subgrades de borda grossa. A cor trabalha em **dois
+  canais independentes**, pensando no projetor:
+  * o **fundo diz a origem** — cinza com número preto = pista do puzzle (nunca
+    muda); branco com número azul = célula preenchida pelo AG;
+  * o **vermelho diz o erro** — número vermelho e uma barra vermelha embaixo
+    marcam a célula que está numa linha ou coluna com repetição.
+
+  Os dois canais são separados de propósito. Pintar a célula inteira de vermelho
+  parecia bom até o primeiro teste: na geração 0 cerca de **metade da grade está
+  em conflito**, o vermelho tomava conta e apagava justamente a distinção entre
+  pista e célula do AG. Do jeito atual dá para ler as duas informações ao mesmo
+  tempo, com a grade em qualquer estado.
+
+  Ao resolver, **só o que o AG preencheu acende em verde** e as pistas continuam
+  cinza — é a imagem que mostra o que o algoritmo de fato produziu.
 * Painel com geração, avaliações, melhor aptidão, reinícios e tempo decorrido.
 * Gráfico da melhor aptidão por geração, em `<canvas>` puro, com uma linha
   vermelha em cada reinício.

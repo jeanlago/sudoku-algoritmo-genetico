@@ -12,7 +12,7 @@
   --grade-fundo: #ffffff;
   --grade-texto: #12161b;
   --grade-pista: #000000;
-  --grade-linha: #9aa4af;
+  --grade-linha: #6b7787;
   --grade-linha-grossa: #12161b;
 }
 
@@ -87,27 +87,44 @@ html, body {
 .celula.col-8 { border-right: none; }
 .celula.lin-8 { border-bottom: none; }
 
+/* As quatro situacoes precisam se distinguir de longe, num projetor.
+   Por isso cada uma muda em TRES eixos ao mesmo tempo: brilho do fundo,
+   matiz e cor do numero. Tons pastel de brilho parecido somem na projecao. */
+
+/* PISTA: fundo escuro acinzentado, numero preto. E o "esqueleto" fixo. */
 .celula.pista {
   font-weight: 900;
-  color: var(--grade-pista);
-  background: #e8ecf1;
+  color: #000;
+  background: #aebccc;
 }
-/* preenchida pelo AG: cor propria, para nao depender de "ausencia de cinza" */
+
+/* PREENCHIDA PELO AG: fundo branco, numero azul forte. Brilho maximo. */
 .celula.preenchida {
-  background: #dbe9fb;
-  color: #0d3a6b;
+  background: #ffffff;
+  color: #0a4fc4;
+  font-weight: 800;
 }
+
+/* CONFLITO: NAO repinta a celula. Sao dois canais independentes -
+   o FUNDO diz a origem (cinza = pista, branco = AG) e o VERMELHO diz o
+   erro (numero vermelho + barra vermelha embaixo). Pintar a celula
+   inteira de vermelho apagava a distincao pista/AG justo quando metade
+   da grade esta em conflito. */
 .celula.conflito {
-  background: #ffd4d4;
-  color: #a80000;
+  color: #c1121f;
+  font-weight: 800;
+  box-shadow: inset 0 -7px 0 0 #e03131;
 }
-.celula.pista.conflito { background: #ffbcbc; }
-.celula.resolvido { background: #d6f8e4; color: #0b5132; }
-/* mesmo resolvido, da para ver quais eram as pistas */
-.celula.pista.resolvido { background: #aeeac7; color: #05331f; }
+/* sobre o cinza da pista, um vermelho mais escuro le melhor */
+.celula.pista.conflito { color: #8c1616; }
+
+/* RESOLVIDO: so o que o AG preencheu acende em verde.
+   As pistas continuam no cinza, deixando visivel o que era dado. */
+.celula.resolvido.preenchida { background: #2f9e44; color: #ffffff; }
+.celula.resolvido.pista { background: #aebccc; color: #000; }
 .celula.trocada {
-  outline: 3px solid #ff9f1c;
-  outline-offset: -3px;
+  outline: 4px solid #ff9f1c;
+  outline-offset: -4px;
 }
 
 .legenda {
@@ -131,9 +148,10 @@ html, body {
   color: var(--grade-texto);
   background: #fff;
 }
-.amostra.pista { background: #e8ecf1; font-weight: 900; color: #000; }
-.amostra.preenchida { background: #dbe9fb; color: #0d3a6b; }
-.amostra.conflito { background: #ffd4d4; color: #a80000; }
+.amostra.pista { background: #aebccc; font-weight: 900; color: #000; }
+.amostra.preenchida { background: #fff; color: #0a4fc4; font-weight: 800; }
+.amostra.conflito { background: #fff; color: #c1121f; font-weight: 800; box-shadow: inset 0 -5px 0 0 #e03131; }
+.amostra.resolvido { background: #2f9e44; color: #fff; font-weight: 800; }
 
 .faixa-status {
   margin-top: 10px;
