@@ -221,6 +221,7 @@
       if (c.textContent !== txt) c.textContent = txt;
       var cls = 'celula lin-' + ((i / 9) | 0) + ' col-' + (i % 9);
       if (estado.pistas[i]) cls += ' pista';
+      else if (v) cls += ' preenchida';
       if (!resolvido && conflitos[i] && v) cls += ' conflito';
       if (resolvido) cls += ' resolvido';
       if (estado.destaques && estado.destaques.indexOf(i) >= 0) cls += ' trocada';

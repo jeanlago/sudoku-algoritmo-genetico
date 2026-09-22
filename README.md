@@ -322,9 +322,12 @@ aparecer.
 
 ## A interface
 
-* Grade 9×9 grande: pistas em negrito com fundo cinza, subgrades com borda grossa,
-  células em conflito (linha ou coluna com repetição) em vermelho, grade inteira
-  em verde quando resolve.
+* Grade 9×9 grande, com subgrades de borda grossa. Cada tipo de célula tem cor
+  própria, para não depender de "ausência de cor" num projetor:
+  **cinza e negrito** = pista do puzzle (nunca muda), **azul** = célula
+  preenchida pelo AG, **vermelho** = célula numa linha ou coluna com repetição,
+  **verde** = resolvido (as pistas ficam num verde mais forte, então dá para ver
+  o que era pista mesmo na grade resolvida).
 * Painel com geração, avaliações, melhor aptidão, reinícios e tempo decorrido.
 * Gráfico da melhor aptidão por geração, em `<canvas>` puro, com uma linha
   vermelha em cada reinício.
