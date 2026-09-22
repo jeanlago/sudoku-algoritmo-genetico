@@ -115,8 +115,6 @@ html, body {
   font-weight: 800;
   box-shadow: inset 0 -7px 0 0 #e03131;
 }
-/* sobre o cinza da pista, um vermelho mais escuro le melhor */
-.celula.pista.conflito { color: #8c1616; }
 
 /* RESOLVIDO: so o que o AG preencheu acende em verde.
    As pistas continuam no cinza, deixando visivel o que era dado. */

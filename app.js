@@ -222,7 +222,9 @@
       var cls = 'celula lin-' + ((i / 9) | 0) + ' col-' + (i % 9);
       if (estado.pistas[i]) cls += ' pista';
       else if (v) cls += ' preenchida';
-      if (!resolvido && conflitos[i] && v) cls += ' conflito';
+      /* pista nunca e o erro (pistas inconsistentes sao rejeitadas na carga):
+         o conflito so marca a celula do AG que colide com ela */
+      if (!resolvido && conflitos[i] && v && !estado.pistas[i]) cls += ' conflito';
       if (resolvido) cls += ' resolvido';
       if (estado.destaques && estado.destaques.indexOf(i) >= 0) cls += ' trocada';
       if (c.className !== cls) c.className = cls;
